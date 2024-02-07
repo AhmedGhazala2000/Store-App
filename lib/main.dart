@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/screens/home_page.dart';
-import 'package:store_app/screens/update_product_page.dart';
+import 'package:store_app/views/update_product_view.dart';
+import 'package:store_app/views/home_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: false
       ),
       routes: {
-        HomePage.id: (context) => const HomePage(),
-        UpdateProductsPage.id:(context)=>const UpdateProductsPage(),
+        HomeView.id: (context) => const HomeView(),
+        UpdateProductsView.id:(context)=>const UpdateProductsView(),
       },
-      initialRoute: HomePage.id,
+      initialRoute: HomeView.id,
     );
   }
 }

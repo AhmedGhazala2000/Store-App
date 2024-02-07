@@ -10,15 +10,15 @@ import 'package:store_app/services/update_products_service.dart';
 import 'package:store_app/widgets/custom_button.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
 
-class UpdateProductsPage extends StatefulWidget {
-  const UpdateProductsPage({Key? key}) : super(key: key);
+class UpdateProductsView extends StatefulWidget {
+  const UpdateProductsView({Key? key}) : super(key: key);
   static String id = 'updateProduct';
 
   @override
-  State<UpdateProductsPage> createState() => _UpdateProductsPageState();
+  State<UpdateProductsView> createState() => _UpdateProductsViewState();
 }
 
-class _UpdateProductsPageState extends State<UpdateProductsPage> {
+class _UpdateProductsViewState extends State<UpdateProductsView> {
   String? title, desc, img;
 
   num? price;

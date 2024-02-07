@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/products_model.dart';
 import 'package:store_app/services/all_products_service.dart';
-import 'package:store_app/widgets/card_widget.dart';
+import 'package:store_app/widgets/custom_card.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
   static const id = 'homePage';
 
   @override
