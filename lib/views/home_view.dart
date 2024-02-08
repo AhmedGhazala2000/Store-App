@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/widgets/categories_list_view.dart';
 import 'package:store_app/widgets/custom_grid_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,7 +16,8 @@ class HomeView extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           'New Trend',
-          style: TextStyle(color:Colors.black,fontSize: 24, fontWeight: FontWeight.w500),
+          style: TextStyle(
+              color: Colors.black, fontSize: 24, fontWeight: FontWeight.w500),
         ),
         actions: [
           IconButton(
@@ -28,13 +30,28 @@ class HomeView extends StatelessWidget {
           )
         ],
       ),
-      body:Column(
-        children: [
-          
-           Expanded(child: CustomGridView()),
-        ],
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(
+              child: CategoryListView(),
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 100,
+              ),
+            ),
+            CustomGridView(),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 10,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-

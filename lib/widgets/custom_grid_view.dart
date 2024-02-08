@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/helper/custom_error_text.dart';
+import 'package:store_app/helper/custom_indicator.dart';
 import 'package:store_app/models/products_model.dart';
 import 'package:store_app/services/all_products_service.dart';
 import 'package:store_app/widgets/custom_card.dart';
@@ -15,30 +17,28 @@ class CustomGridView extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<ProductModel> products = snapshot.data!;
-            return GridView.builder(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 70),
+            return SliverGrid(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1.5,
                 crossAxisSpacing: 15,
-                mainAxisSpacing: 75,
+                mainAxisSpacing: 80,
               ),
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                return CustomCard(
-                  product: products[index],
-                );
-              },
+              delegate: SliverChildBuilderDelegate(
+                childCount: products.length,
+                (context, index) {
+                  return CustomCard(
+                    product: products[index],
+                  );
+                },
+              ),
             );
           } else if (snapshot.hasError) {
-            return const Center(
-                child: Text(
-                  'There was an error, Please try later !',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ));
+            return SliverToBoxAdapter(
+              child: customErrorText(),
+            );
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return SliverToBoxAdapter(child: customIndicator());
           }
         });
   }
