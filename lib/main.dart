@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/views/category_view.dart';
 import 'package:store_app/views/update_product_view.dart';
 import 'package:store_app/views/home_view.dart';
 
@@ -14,12 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: false
-      ),
+      theme: ThemeData(useMaterial3: false),
       routes: {
         HomeView.id: (context) => const HomeView(),
-        UpdateProductsView.id:(context)=>const UpdateProductsView(),
+        UpdateProductsView.id: (context) => const UpdateProductsView(),
+        CategoryView.id: (context) => const CategoryView(),
       },
       initialRoute: HomeView.id,
     );

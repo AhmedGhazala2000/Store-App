@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:store_app/models/products_model.dart';
 import 'package:store_app/views/update_product_view.dart';
 
-class CustomCard extends StatefulWidget {
-  const CustomCard({
+class ProductCard extends StatefulWidget {
+  const ProductCard({
     required this.product,
     super.key,
   });
@@ -11,10 +11,10 @@ class CustomCard extends StatefulWidget {
   final ProductModel product;
 
   @override
-  State<CustomCard> createState() => _CustomCardState();
+  State<ProductCard> createState() => _ProductCardState();
 }
 
-class _CustomCardState extends State<CustomCard> {
+class _ProductCardState extends State<ProductCard> {
   bool isFavorite = false;
 
   @override

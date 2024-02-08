@@ -3,7 +3,7 @@ import 'package:store_app/helper/custom_error_text.dart';
 import 'package:store_app/helper/custom_indicator.dart';
 import 'package:store_app/models/products_model.dart';
 import 'package:store_app/services/all_products_service.dart';
-import 'package:store_app/widgets/custom_card.dart';
+import 'package:store_app/widgets/products_grid_view.dart';
 
 class CustomGridView extends StatelessWidget {
   const CustomGridView({
@@ -17,22 +17,7 @@ class CustomGridView extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<ProductModel> products = snapshot.data!;
-            return SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.5,
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 80,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                childCount: products.length,
-                (context, index) {
-                  return CustomCard(
-                    product: products[index],
-                  );
-                },
-              ),
-            );
+            return ProductsGridView(products: products);
           } else if (snapshot.hasError) {
             return SliverToBoxAdapter(
               child: customErrorText(),
