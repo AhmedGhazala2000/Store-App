@@ -96,6 +96,7 @@ class _UpdateProductsViewState extends State<UpdateProductsView> {
                     try {
                       await updateProduct(product);
                       showSnackBar(context, message: 'Success');
+                      Navigator.pop(context);
                       log('success');
                     } catch (e) {
                       showSnackBar(context, message: 'Failed, try later');

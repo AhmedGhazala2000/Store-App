@@ -20,10 +20,25 @@ class CustomGridView extends StatelessWidget {
             return ProductsGridView(products: products);
           } else if (snapshot.hasError) {
             return SliverToBoxAdapter(
-              child: customErrorText(),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 150,
+                  ),
+                  customErrorText(),
+                ],
+              ),
             );
           } else {
-            return SliverToBoxAdapter(child: customIndicator());
+            return SliverToBoxAdapter(
+                child: Column(
+              children: [
+                const SizedBox(
+                  height: 150,
+                ),
+                customIndicator(),
+              ],
+            ));
           }
         });
   }
