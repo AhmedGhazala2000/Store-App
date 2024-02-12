@@ -1,26 +1,42 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_app/cubits/products_cubit/products_cubit.dart';
 import 'package:store_app/helper/custom_error_text.dart';
 import 'package:store_app/helper/custom_indicator.dart';
 import 'package:store_app/models/products_model.dart';
-import 'package:store_app/services/get_category_service.dart';
+import 'package:store_app/widgets/add_product_bottom_sheet.dart';
 import 'package:store_app/widgets/products_grid_view.dart';
 
-class CategoryView extends StatelessWidget {
-  const CategoryView({Key? key}) : super(key: key);
+class CategoryView extends StatefulWidget {
+  const CategoryView({Key? key, this.categoryName}) : super(key: key);
   static const id = 'CategoryView';
+  final String? categoryName;
+
+  @override
+  State<CategoryView> createState() => _CategoryViewState();
+}
+
+class _CategoryViewState extends State<CategoryView> {
+  @override
+  void initState() {
+    BlocProvider.of<ProductsCubit>(context)
+        .getProductsCategory(categoryName: widget.categoryName!);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    String categoryName = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.grey,
         centerTitle: true,
         title: Text(
-          categoryName,
+          widget.categoryName!,
           style: const TextStyle(
-              color: Colors.white70, fontSize: 24, fontWeight: FontWeight.w500),
+              color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
         ),
       ),
       body: Padding(
@@ -33,27 +49,47 @@ class CategoryView extends StatelessWidget {
                 height: 100,
               ),
             ),
-            FutureBuilder<List<ProductModel>>(
-                future:
-                    CategoryService().getCategory(categoryName: categoryName),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    List<ProductModel> products = snapshot.data!;
-                    return ProductsGridView(products: products);
-                  } else if (snapshot.hasError) {
-                    return SliverToBoxAdapter(
-                      child: customErrorText(),
-                    );
-                  } else {
-                    return SliverToBoxAdapter(child: customIndicator());
-                  }
-                }),
+            BlocBuilder<ProductsCubit, ProductsState>(
+              builder: (context, state) {
+                if (state is ProductsSuccess) {
+                  List<ProductModel> products = state.products;
+                  return ProductsGridView(products: products);
+                } else if (state is ProductsFailure) {
+                  log(state.errMessage!);
+                  return SliverToBoxAdapter(
+                    child: customErrorText(),
+                  );
+                } else {
+                  return SliverToBoxAdapter(child: customIndicator());
+                }
+              },
+            ),
             const SliverToBoxAdapter(
               child: SizedBox(
                 height: 10,
               ),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey,
+        onPressed: () {
+          showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            isScrollControlled: true,
+            context: context,
+            builder: (context) {
+              return AddProductBottomSheet(
+                categoryName: widget.categoryName!,
+              );
+            },
+          );
+        },
+        child: const Icon(
+          Icons.add,
         ),
       ),
     );

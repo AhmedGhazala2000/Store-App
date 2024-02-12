@@ -10,7 +10,11 @@ class Category extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, CategoryView.id, arguments: categoryName);
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return CategoryView(categoryName: categoryName);
+          },
+        ));
       },
       child: Container(
         margin: const EdgeInsets.only(right: 10),
@@ -24,7 +28,7 @@ class Category extends StatelessWidget {
         child: Text(
           categoryName,
           style: const TextStyle(
-            color: Colors.white70,
+            color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
