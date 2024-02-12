@@ -31,14 +31,13 @@ class AddProductsService {
             headers: headers,
           ));
       Map<String, dynamic> product = response.data;
-
       return ProductModel.fromJson(product);
     } on DioException catch (e) {
       log(e.toString());
       throw Exception(e.response!.data.toString());
     } catch (e) {
       log(e.toString());
-      throw Exception(const Text('there was an error, try later'));
+      throw Exception(const Text('There was an error, please try later'));
     }
   }
 }
