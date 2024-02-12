@@ -35,7 +35,6 @@ class UpdateProductsService {
         ),
       );
       Map<String, dynamic> product = response.data;
-      log(product.toString());
       return ProductModel.fromJson(product);
     } on DioException catch (e) {
       log(e.toString());

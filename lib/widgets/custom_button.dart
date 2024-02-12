@@ -20,7 +20,7 @@ class CustomMaterialButton extends StatelessWidget {
       height: 50,
       onPressed: onPressed,
       child: isLoading
-          ?  SizedBox(
+          ? SizedBox(
               height: 25,
               width: 25,
               child: CircularProgressIndicator(

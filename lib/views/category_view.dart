@@ -6,7 +6,7 @@ import 'package:store_app/cubits/products_cubit/products_cubit.dart';
 import 'package:store_app/helper/custom_error_text.dart';
 import 'package:store_app/helper/custom_indicator.dart';
 import 'package:store_app/models/products_model.dart';
-import 'package:store_app/widgets/add_product_bottom_sheet.dart';
+import 'package:store_app/widgets/custom_floating_action_button.dart';
 import 'package:store_app/widgets/products_grid_view.dart';
 
 class CategoryView extends StatefulWidget {
@@ -72,26 +72,8 @@ class _CategoryViewState extends State<CategoryView> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey,
-        onPressed: () {
-          showModalBottomSheet(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            isScrollControlled: true,
-            context: context,
-            builder: (context) {
-              return AddProductBottomSheet(
-                categoryName: widget.categoryName!,
-              );
-            },
-          );
-        },
-        child: const Icon(
-          Icons.add,
-        ),
-      ),
+      floatingActionButton:
+          customFloatingActionButton(context, widget.categoryName!),
     );
   }
 }

@@ -20,7 +20,7 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onLongPress: () {
+      onTap: () {
         Navigator.pushNamed(context, UpdateProductsView.id,
             arguments: widget.product);
       },

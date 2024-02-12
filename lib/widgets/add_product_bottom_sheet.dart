@@ -25,7 +25,6 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
 
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? title, desc, img;
-
   num? price;
   bool isLoading = false;
 
@@ -98,7 +97,6 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                       Navigator.pop(context);
                       showSnackBar(context,
                           message: 'The product added successfully');
-                      log('success');
                     } catch (e) {
                       Navigator.pop(context);
                       showSnackBar(context,

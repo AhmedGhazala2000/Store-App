@@ -49,9 +49,9 @@ class _UpdateProductsViewState extends State<UpdateProductsView> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 100,
+                  height: 70,
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   text: 'Category Name',
                   onChange: (data) {
                     title = data;
@@ -60,8 +60,9 @@ class _UpdateProductsViewState extends State<UpdateProductsView> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomTextField(
-                  text: 'description',
+                CustomTextFormField(
+                  text: 'Description',
+                  maxLines: 3,
                   onChange: (data) {
                     desc = data;
                   },
@@ -69,7 +70,7 @@ class _UpdateProductsViewState extends State<UpdateProductsView> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   text: 'Price',
                   inputType: TextInputType.number,
                   onChange: (data) {
@@ -79,7 +80,7 @@ class _UpdateProductsViewState extends State<UpdateProductsView> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   text: 'Image',
                   onChange: (data) {
                     img = data;
@@ -95,11 +96,13 @@ class _UpdateProductsViewState extends State<UpdateProductsView> {
                     setState(() {});
                     try {
                       await updateProduct(product);
-                      showSnackBar(context, message: 'Success');
+                      showSnackBar(context,
+                          message: 'The product updated successfully');
                       Navigator.pop(context);
-                      log('success');
                     } catch (e) {
-                      showSnackBar(context, message: 'Failed, try later');
+                      showSnackBar(context,
+                          message: 'Failed, please try later');
+                      Navigator.pop(context);
                       log(e.toString());
                     }
                     isLoading = false;
