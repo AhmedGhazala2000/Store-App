@@ -37,7 +37,7 @@ class AddProductsService {
       throw Exception(e.response!.data.toString());
     } catch (e) {
       log(e.toString());
-      throw Exception(const Text('There was an error, please try later'));
+      throw Exception(const Text('There was an error, Please try later'));
     }
   }
 }

@@ -25,7 +25,7 @@ class CustomGridView extends StatelessWidget {
                   const SizedBox(
                     height: 150,
                   ),
-                  customErrorText(),
+                  customErrorText(context),
                 ],
               ),
             );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/widgets/build_icon_button.dart';
+import 'package:store_app/widgets/build_title.dart';
 import 'package:store_app/widgets/categories_list_view.dart';
 import 'package:store_app/widgets/custom_grid_view.dart';
 
@@ -14,21 +16,8 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          'New Trend',
-          style: TextStyle(
-              color: Colors.black, fontSize: 24, fontWeight: FontWeight.w500),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.shopping_cart,
-              color: Colors.black,
-              size: 30,
-            ),
-          )
-        ],
+        title: buildTitle(context, text: 'New Trend'),
+        actions: [buildIconButton(context)],
       ),
       body: const Padding(
         padding: EdgeInsets.all(10),

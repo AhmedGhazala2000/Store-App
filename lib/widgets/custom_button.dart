@@ -16,7 +16,7 @@ class CustomMaterialButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(color: Colors.teal),
       ),
-      minWidth: double.infinity,
+      minWidth: MediaQuery.sizeOf(context).width,
       height: 50,
       onPressed: onPressed,
       child: isLoading

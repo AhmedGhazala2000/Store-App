@@ -34,17 +34,18 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
       absorbing: isLoading,
       child: SingleChildScrollView(
         padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 32,
-            bottom: 32 + MediaQuery.of(context).viewInsets.bottom),
+          left: 16,
+          right: 16,
+          top: 32,
+          bottom: 32 + MediaQuery.of(context).viewInsets.bottom,
+        ),
         child: Form(
           key: formKey,
           autovalidateMode: autoValidateMode,
           child: Column(
             children: [
               CustomTextFormField(
-                text: 'Category Name',
+                text: 'Title',
                 onSaved: (data) {
                   title = data;
                 },

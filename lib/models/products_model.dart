@@ -18,15 +18,16 @@ class ProductModel {
 
   factory ProductModel.fromJson(jsonData) {
     return ProductModel(
-        id: jsonData['id'],
-        title: jsonData['title'],
-        price: jsonData['price'],
-        description: jsonData['description'],
-        category: jsonData['category'],
-        image: jsonData['image'],
-        rating: jsonData['rating'] == null
-            ? RatingModel(rate: 0.0, count: 0)
-            : RatingModel.fromJson(jsonData['rating']));
+      id: jsonData['id'],
+      title: jsonData['title'],
+      price: jsonData['price'],
+      description: jsonData['description'],
+      category: jsonData['category'],
+      image: jsonData['image'],
+      rating: jsonData['rating'] == null
+          ? RatingModel(rate: 0.0, count: 0)
+          : RatingModel.fromJson(jsonData['rating']),
+    );
   }
 }
 

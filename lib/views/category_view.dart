@@ -6,6 +6,7 @@ import 'package:store_app/cubits/products_cubit/products_cubit.dart';
 import 'package:store_app/helper/custom_error_text.dart';
 import 'package:store_app/helper/custom_indicator.dart';
 import 'package:store_app/models/products_model.dart';
+import 'package:store_app/widgets/build_title.dart';
 import 'package:store_app/widgets/custom_floating_action_button.dart';
 import 'package:store_app/widgets/products_grid_view.dart';
 
@@ -32,11 +33,13 @@ class _CategoryViewState extends State<CategoryView> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.grey,
+        elevation: 0,
         centerTitle: true,
-        title: Text(
-          widget.categoryName!,
-          style: const TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
+        title: buildTitle(
+          context,
+          text: widget.categoryName!,
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
         ),
       ),
       body: Padding(
@@ -57,7 +60,7 @@ class _CategoryViewState extends State<CategoryView> {
                 } else if (state is ProductsFailure) {
                   log(state.errMessage!);
                   return SliverToBoxAdapter(
-                    child: customErrorText(),
+                    child: customErrorText(context),
                   );
                 } else {
                   return SliverToBoxAdapter(child: customIndicator());

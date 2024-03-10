@@ -7,6 +7,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/helper/show_snack_bar.dart';
 import 'package:store_app/models/products_model.dart';
 import 'package:store_app/services/update_products_service.dart';
+import 'package:store_app/widgets/build_title.dart';
 import 'package:store_app/widgets/custom_button.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
 
@@ -37,22 +38,22 @@ class _UpdateProductsViewState extends State<UpdateProductsView> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          title: const Text(
-            'Update Product',
-            style: TextStyle(
-                color: Colors.black, fontSize: 22, fontWeight: FontWeight.w500),
+          title: buildTitle(
+            context,
+            text: 'Update Product',
+            fontWeight: FontWeight.w600,
           ),
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
                 const SizedBox(
                   height: 70,
                 ),
                 CustomTextFormField(
-                  text: 'Category Name',
+                  text: 'Title',
                   onChange: (data) {
                     title = data;
                   },

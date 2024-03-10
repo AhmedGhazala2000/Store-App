@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/products_model.dart';
+import 'package:store_app/utils/responsive_font_size.dart';
 import 'package:store_app/views/update_product_view.dart';
 
 class ProductCard extends StatefulWidget {
@@ -40,14 +41,25 @@ class _ProductCardState extends State<ProductCard> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     widget.product.title,
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: getResponsiveFontSize(
+                        context,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         r'$' '${widget.product.price.toString()}',
-                        style: const TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: getResponsiveFontSize(
+                            context,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
                       IconButton(
                         padding: EdgeInsets.zero,
@@ -67,13 +79,19 @@ class _ProductCardState extends State<ProductCard> {
             ),
           ),
           Positioned(
-              left: 80,
-              top: -60,
-              child: Image.network(
-                widget.product.image,
-                height: 100,
-                width: 100,
-              )),
+            right: getResponsiveFontSize(context, fontSize: 30),
+            top: -50,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxWidth: getResponsiveFontSize(context, fontSize: 100)),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Image.network(
+                  widget.product.image,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
